@@ -1,0 +1,17 @@
+version: '2'
+services:
+  hostmaster:
+    image: aegir/hostmaster
+    ports:
+      - 80:80
+    hostname: aegir.docker.local
+    links:
+      - database
+    depends_on:
+      - database
+    environment:
+      MYSQL_ROOT_PASSWORD: strongpassword
+  database:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: strongpassword
