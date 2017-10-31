@@ -10,8 +10,8 @@ services:
     depends_on:
       - database
     environment:
-      MYSQL_ROOT_PASSWORD: strongpassword
+      MYSQL_ROOT_PASSWORD: root
   database:
     image: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: strongpassword
+      MYSQL_ROOT_PASSWORD: root
