@@ -25,6 +25,12 @@ RUN a2enmod rewrite
 RUN a2enmod ssl
 RUN ln -s /var/aegir/config/apache.conf /etc/apache2/conf-available/aegir.conf
 RUN ln -s /etc/apache2/conf-available/aegir.conf /etc/apache2/conf-enabled/aegir.conf
+
+RUN a2ensite default-ssl
+RUN mkdir /etc/apache2/ssl
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+RUN chmod 600 /etc/apache2/ssl/*
+
 COPY sudoers-aegir /etc/sudoers.d/aegir
 RUN chmod 0440 /etc/sudoers.d/aegir
 RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/1b137f8bf6db3e79a38a5bc45324414a6b1f9df2/web/installer -O - -q | php -- --quiet

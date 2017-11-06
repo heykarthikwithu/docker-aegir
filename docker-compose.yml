@@ -1,4 +1,6 @@
 version: '2'
+volumes:
+  aegir_database:
 services:
   hostmaster:
     image: aegir/hostmaster
@@ -15,3 +17,5 @@ services:
     image: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - aegir_database:/var/lib/mysql
